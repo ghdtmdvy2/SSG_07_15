@@ -103,4 +103,26 @@ public class AppTest {
         assertTrue(rs.contains("2 / 작가2 / 명언2"));
         assertTrue(rs.contains("1 / 작가1 / 명언1"));
     }
+    @Test
+    public void 등록후_삭제() {
+        Scanner sc = TestUtil.genScanner("""
+                등록
+                명언1
+                작가1
+                등록
+                명언2
+                작가2
+                목록
+                삭제?id=1
+                종료
+                """);
+        ByteArrayOutputStream output = TestUtil.setOutToByteArray();
+
+        new App(sc).run();
+
+        String rs = output.toString();
+        TestUtil.clearSetOutToByteArray(output);
+
+        assertTrue(rs.contains("1번 명언이 삭제되었습니다."));
+    }
 }

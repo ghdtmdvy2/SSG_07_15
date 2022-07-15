@@ -37,6 +37,15 @@ public class App {
                         System.out.printf("%d / %s / %s\n",wiseSaying_.id,wiseSaying_.author,wiseSaying_.content);
                     }
                     break;
+                case "삭제":
+                    int paramId = rq.getIntParam("id",0);
+                    for ( WiseSaying wiseSaying_ : wiseSayings){
+                        if ( wiseSaying_.id == paramId ){
+                            wiseSayings.remove(wiseSaying_);
+                            System.out.printf("%d번 명언이 삭제되었습니다.",paramId);
+                        }
+                    }
+                    break;
                 case "종료":
                     break outer;
             }
