@@ -11,6 +11,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AppTest {
     @Test
+    void 파일에_내용읽기() {
+        Util.file.mkdir("test_data");
+        Util.file.saveToFile("test_data/1.json", "내용");
+        String rs = Util.file.readFromFile("test_data/1.json","");
+        assertEquals(rs,"내용");
+    }
+    @Test
+    void 파일에_내용쓰기() {
+        Util.file.mkdir("test_data");
+        Util.file.saveToFile("test_data/1.json", "내용");
+    }
+    @Test
     public void 프로그램_시작시_타이틀_출력_그리고_종료() {
         Scanner sc = TestUtil.genScanner("종료");
         ByteArrayOutputStream output = TestUtil.setOutToByteArray();
