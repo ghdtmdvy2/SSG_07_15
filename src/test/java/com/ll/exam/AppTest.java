@@ -147,4 +147,35 @@ public class AppTest {
 
         assertTrue(rs.contains("1번 명언은 존재하지 않습니다."));
     }
+    @Test
+    public void 등록후_삭제_수정() {
+        Scanner sc = TestUtil.genScanner("""
+                등록
+                명언1
+                작가1
+                등록
+                명언2
+                작가2
+                목록
+                삭제?id=1
+                삭제?id=1
+                수정?id=2
+                현재와 자신을 사랑하라.
+                홍길동                
+                목록
+                종료
+                """);
+        ByteArrayOutputStream output = TestUtil.setOutToByteArray();
+
+        new App(sc).run();
+
+        String rs = output.toString();
+        TestUtil.clearSetOutToByteArray(output);
+        System.out.println(rs);
+        assertTrue(rs.contains("명언(기존) :"));
+        assertTrue(rs.contains("명언 :"));
+        assertTrue(rs.contains("작가(기존) :"));
+        assertTrue(rs.contains("작가 :"));
+        assertTrue(rs.contains("2 / 홍길동 / 현재와 자신을 사랑하라."));
+    }
 }

@@ -13,6 +13,9 @@ public class App {
         wiseSayingid = 0;
     }
     void run(){
+        String content;
+        String author;
+        int paramId;
         outer:
         while(true){
             System.out.println("== 명언 SSG ==");
@@ -22,9 +25,9 @@ public class App {
             switch (rq.getPath()){
                 case "등록":
                     System.out.print("명언 : ");
-                    String content = sc.nextLine().trim();
+                    content = sc.nextLine().trim();
                     System.out.print("작가 : ");
-                    String author = sc.nextLine().trim();
+                    author = sc.nextLine().trim();
                     wiseSayingid++;
                     WiseSaying wiseSaying = new WiseSaying(wiseSayingid,content,author);
                     wiseSayings.add(wiseSaying);
@@ -38,11 +41,28 @@ public class App {
                     }
                     break;
                 case "삭제":
-                    int paramId = rq.getIntParam("id",0);
+                    paramId = rq.getIntParam("id",0);
                     for ( WiseSaying wiseSaying_ : wiseSayings){
                         if ( wiseSaying_.id == paramId ){
                             wiseSayings.remove(wiseSaying_);
                             System.out.printf("%d번 명언이 삭제되었습니다.\n",paramId);
+                            continue;
+                        }
+                        System.out.printf("%d번 명언은 존재하지 않습니다.\n",paramId);
+                    }
+                    break;
+                case "수정":
+                    paramId = rq.getIntParam("id",0);
+                    for ( WiseSaying wiseSaying_ : wiseSayings){
+                        if ( wiseSaying_.id == paramId ){
+                            System.out.printf("명언(기존) : %s",wiseSaying_.content);
+                            System.out.print("명언 : ");
+                            content = sc.nextLine().trim();
+                            System.out.printf("작가(기존) : %s",wiseSaying_.author);
+                            System.out.print("작가 : ");
+                            author = sc.nextLine().trim();
+                            wiseSaying_.content = content;
+                            wiseSaying_.author = author;
                             continue;
                         }
                         System.out.printf("%d번 명언은 존재하지 않습니다.\n",paramId);
