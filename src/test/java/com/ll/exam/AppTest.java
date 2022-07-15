@@ -171,7 +171,6 @@ public class AppTest {
 
         String rs = output.toString();
         TestUtil.clearSetOutToByteArray(output);
-        System.out.println(rs);
         assertTrue(rs.contains("명언(기존) :"));
         assertTrue(rs.contains("명언 :"));
         assertTrue(rs.contains("작가(기존) :"));
