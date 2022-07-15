@@ -11,11 +11,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AppTest {
     @Test
-    void 파일에_내용읽기() {
+    void 객체를_파일로_저장() {
         Util.file.mkdir("test_data");
-        Util.file.saveToFile("test_data/1.json", "내용");
+        WiseSaying wiseSaying = new WiseSaying(1,"명언1","작가1");
+        Util.file.saveToFile("test_data/1.json", wiseSaying.toString());
         String rs = Util.file.readFromFile("test_data/1.json","");
-        assertEquals(rs,"내용");
+        assertEquals(rs,wiseSaying.toString());
     }
     @Test
     void 파일에_내용쓰기() {
