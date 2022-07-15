@@ -1,11 +1,16 @@
 package com.ll.exam;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
     Scanner sc;
+    List<WiseSaying> wiseSayings = new ArrayList<>();
+    int wiseSayingid;
     App(Scanner sc){
         this.sc = sc;
+        wiseSayingid = 0;
     }
     void run(){
         outer:
@@ -20,7 +25,10 @@ public class App {
                     String content = sc.nextLine().trim();
                     System.out.print("작가 : ");
                     String author = sc.nextLine().trim();
-                    System.out.println("1번 명언이 등록되었습니다.");
+                    wiseSayingid++;
+                    WiseSaying wiseSaying = new WiseSaying(wiseSayingid,content,author);
+                    wiseSayings.add(wiseSaying);
+                    System.out.printf("%d번 명언이 등록되었습니다.",wiseSayingid);
                     break;
                 case "종료":
                     break outer;

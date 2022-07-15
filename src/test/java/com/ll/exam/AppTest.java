@@ -58,4 +58,25 @@ public class AppTest {
 
         assertTrue(rs.contains("1번 명언이 등록되었습니다."));
     }
+    @Test
+    public void 등록할때마다_생성되는_명언번호가_증가() {
+        Scanner sc = TestUtil.genScanner("""
+                등록
+                명언1
+                작가1
+                등록
+                명언2
+                작가2
+                종료
+                """);
+        ByteArrayOutputStream output = TestUtil.setOutToByteArray();
+
+        new App(sc).run();
+
+        String rs = output.toString();
+        TestUtil.clearSetOutToByteArray(output);
+
+        assertTrue(rs.contains("1번 명언이 등록되었습니다."));
+        assertTrue(rs.contains("2번 명언이 등록되었습니다."));
+    }
 }
