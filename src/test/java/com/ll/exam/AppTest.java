@@ -4,12 +4,23 @@ import com.ll.exam.App;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
+import java.util.Map;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AppTest {
+    @Test
+    void 파일에_있는_JSON을_읽어서_맵으로_변환() {
+        Util.file.mkdir("test_data");
+        WiseSaying wiseSaying = new WiseSaying(1,"명언1","작가1");
+        Util.file.saveToFile("test_data/1.json", wiseSaying.toString());
+        Map<String, Object> map = Util.json.jsonToMapFromFile("test_data/1.json");
+        assertEquals(1,map.get("id"));
+        assertEquals("명언1",map.get("content"));
+        assertEquals("작가1",map.get("author"));
+    }
     @Test
     void 객체를_파일로_저장() {
         Util.file.mkdir("test_data");
