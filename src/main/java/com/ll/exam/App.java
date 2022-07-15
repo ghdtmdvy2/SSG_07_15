@@ -42,8 +42,10 @@ public class App {
                     for ( WiseSaying wiseSaying_ : wiseSayings){
                         if ( wiseSaying_.id == paramId ){
                             wiseSayings.remove(wiseSaying_);
-                            System.out.printf("%d번 명언이 삭제되었습니다.",paramId);
+                            System.out.printf("%d번 명언이 삭제되었습니다.\n",paramId);
+                            continue;
                         }
+                        System.out.printf("%d번 명언은 존재하지 않습니다.\n",paramId);
                     }
                     break;
                 case "종료":
